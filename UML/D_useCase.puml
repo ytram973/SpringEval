@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+
+actor "Visiteur" as Visitor
+actor "Utilisateur (connecté)" as User #Violet
+
+rectangle "TodoList" {
+
+    usecase "Voir la page d'accueil" as UC1
+    usecase "Consulter les tâches fictives" as UC2
+    usecase "Se connecter" as UC3
+
+    usecase "Ajouter une tâche" as UC4 #Violet
+    usecase "Modifier une tâche" as UC5 #Violet
+    usecase "Supprimer une tâche" as UC6 #Violet
+    usecase "Rechercher une tâche" as UC7 #Violet
+    usecase "Filtrer par catégorie" as UC8 #Violet
+
+}
+
+' Généralisation : Utilisateur hérite de Visiteur
+Visitor <|-- User
+
+' Visiteur accède aux UC publics
+Visitor -- UC1
+Visitor -- UC2
+Visitor -- UC3
+
+' Utilisateur accède aux UC privés
+User -- UC4
+User -- UC5
+User -- UC6
+User -- UC7
+User -- UC8
+
+@enduml
