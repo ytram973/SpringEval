@@ -1,0 +1,41 @@
+@startuml
+class User {
+  -Long id
+  -String username
+  -String email
+  -String password
+  -String role
+  +login() boolean
+  +logout() void
+  +register() void
+}
+
+class Task {
+  -Long id
+  -String name
+  -String description
+  -LocalDate dueDate
+  -Status status
+  -boolean fictive
+  +create() void
+  +update() void
+  +delete() void
+}
+
+class Category {
+  -Long id
+  -String name
+  -String color
+  +getTaskCount() int
+}
+
+enum Status {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+User "1" --> "0..*" Task 
+Task "0..*" --> "0..1" Category 
+Task --> Status 
+@enduml
