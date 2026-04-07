@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head><title>Accueil</title></head>
+<body>
+<div layout:fragment="content">
+
+    <div class="text-center py-5">
+        <h1 class="display-5 fw-bold">Organisez vos tâches simplement</h1>
+        <p class="lead text-muted">Créez, suivez et gérez vos tâches au quotidien.</p>
+        <a href="/register" class="btn btn-primary me-2">Commencer</a>
+        <a href="/login" class="btn btn-outline-secondary">Se connecter</a>
+    </div>
+
+    <hr class="my-4">
+    <h4 class="mb-3">Exemple de tâches</h4>
+
+    <div class="row g-3">
+        <div class="col-md-4" th:each="task : ${tasks}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${task.name}"></h5>
+                    <p class="card-text text-muted small"
+                       th:text="${task.description}"></p>
+                    <span class="badge"
+                          th:classappend="${task.status.name() == 'TODO'} ? 'badge-todo' :
+                                          (${task.status.name() == 'IN_PROGRESS'} ? 'badge-inprogress' : 'badge-done')"
+                          th:text="${task.status}"></span>
+                </div>
+                <div class="card-footer text-muted small"
+                     th:if="${task.dueDate != null}"
+                     th:text="'Échéance : ' + ${task.dueDate}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
