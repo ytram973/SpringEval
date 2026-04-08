@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Inscription</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="card-title mb-4">Inscription</h4>
+
+                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                        <form method="post" action="/register">
+                            <div class="mb-3">
+                                <label class="form-label">Nom d'utilisateur</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mot de passe</label>
+                                <input type="password" name="password" class="form-control" required minlength="8">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirmer le mot de passe</label>
+                                <input type="password" name="confirmPassword" class="form-control" required
+                                    minlength="8">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                S'inscrire
+                            </button>
+                        </form>
+
+                        <p class="text-center mt-3 small">
+                            Déjà un compte ?
+                            <a href="/login">Se connecter</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
