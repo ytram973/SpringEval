@@ -1,0 +1,18 @@
+@startuml
+actor Utilisateur
+participant Controller
+participant TaskService
+participant TaskRepository
+database "Base de données"
+
+== Ajouter une tâche ==
+Utilisateur -> Controller : POST /tasks (name, date, desc, category)
+Controller -> TaskService : createTask(taskDto, userId)
+TaskService -> TaskRepository : save(task)
+TaskRepository -> "Base de données" : INSERT INTO task
+"Base de données" --> TaskRepository : OK
+TaskRepository --> TaskService : Task sauvegardée
+TaskService --> Controller : Task
+Controller --> Utilisateur : Redirect /tasks
+
+@enduml
